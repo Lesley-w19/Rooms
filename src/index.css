@@ -1,13 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Benne&family=Merriweather:ital@1&family=Noto+Serif+SC:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  /* box-sizing: border-box; */
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+             box-sizing: border-box;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.section-wrapper{
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.heading{
+  margin: 1rem 1.5rem;
+}
+.heading{
+  color: orange;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  letter-spacing: .11rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+ margin-bottom: 2rem;
+}
+.heading::after{
+  content: '';
+  display: block;
+  width: 4rem;
+  height: .4rem;
+  background-color: teal;
+}
+
+.info-wrapper{
+   width: 90vw;
+  max-width: 1170px;
+  margin: .2rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+  grid-column-gap: 1.2rem;
+  grid-row-gap: 1.5rem;
+}
+.room{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: all .2s ease-in-out;
+  border-top: .05rem solid rgba(47, 79, 79, 0.164);
+
+}
+.room:hover{
+  box-shadow: .1rem .1rem .2rem #000;
+  
+}
+.room img{
+  width: 100%;
+  height: 12rem;
+}
+
+.name{
+  font-family: 'Benne', serif;
+  font-size: 1.3rem;
+  letter-spacing: .2rem;
+  text-transform: uppercase;
+  color: crimson;
+}
+.img-container{
+  position: relative;
+/* overflow: hidden; */
+}
+.info{
+  letter-spacing: .1rem;
+}
+
+.room .price{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  color: #fff;
+  border-bottom:.2rem solid crimson;
+  transition: all .3s ease-in;
+}
+.room:hover .price{
+ color: #000;
+ border-bottom:.2rem solid #000;
+  
+}
+.btn{
+  width: 100%;
+  margin-top: -.3rem;
+  padding: .8rem ;
+  border:none;
+  outline: none;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  letter-spacing: .1rem;
+  font-size: 1rem;
+  background:teal;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+.btn a{
+  color: #fff;
+  text-decoration: none;
+}
+.btn:hover{
+  background-color: transparent;
+}
+.btn:hover .link{
+  color: darkslategray;
+
+}
+/* rooms styles */
+.rooms-wrapper{
+  display: grid;
+  grid-template-columns: repeat(autofit, minmax(250px, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 1.5rem;
+}
+
+/* room details */
+.room-details{
+  width: 100vw;
+}
+
+.images-wrapper{
+  display: block;
+
+}
+.imgContainer{
+  width: 100%;
+  position: relative;
+}
+.imgContainer img{
+  width: 100%;
+  height: 21rem;
+}
+.btnImg{
+  position: absolute;
+  bottom: 1rem;
+  left: 25%;
+  width: 50%;
+  margin: 0 auto;
+ display: flex;
+ 
+}
+
+.btnImg .btn:hover{
+  background:rgba(0, 128, 128, 0.678);
+}
+
+/* .images{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+ box-sizing: border-box;
+ overflow-x: scroll;
+}
+.images div{
+  width: 100%;
+}
+.images img{
+  width: 600px;
+  height: 15rem;
+}
+.images img:hover{
+  z-index: 2;
+
+}
+.images img:hover, .images img:nth-child(2){
+  box-shadow: 0 .1rem 0.1rem rgba(0, 0, 0, 0.945);
+  transform: scale(1.05);
+} */
+.images{
+  width: 100%;
+  margin: 1rem auto;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: block;
+  white-space: nowrap;
+  overflow: scroll;
+}
+.images div{
+  display: inline-block;
+  margin-right: .2rem;
+ 
+}
+/* .images::-webkit-scrollbar{
+  display: none;
+} */
+.images img{
+  height: 15rem;
+}
+.images img:hover{
+  z-index: 2;
+}
+.images img:hover, .images img:nth-child(2){
+  box-shadow: 0 .1rem 0.1rem rgba(0, 0, 0, 0.945);
+  transform: scale(1.05);
+}
+
+.roomHeader{
+  margin:3rem auto .1rem auto;
+  width: 90%;
+  border-bottom: .15rem solid orangered;
+  text-align: center;
+}
+.roomHeader h1{
+  letter-spacing: .1rem;
+  padding: .5rem 1rem;
+  color: teal;
+  text-transform: uppercase;
+  /* background-color: yellow; */
+}
+.room-info{
+  width: 80vw;
+  margin: 1rem auto 1rem auto;
+  padding: 1rem 2rem;
+  letter-spacing: .1rem;
+}
+
+.room-info:hover{
+  /* background: rgba(216, 185, 191, 0.117); */
+  box-shadow: 0 .1rem 0.2rem darkslategrey;
+}
+.detNum{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem auto;
+}
+.room-info h3{
+  color: orangered;
+  font-size: 1.2rem;
+  font-family: 'Roboto Slab', serif;
+}
+
+.room-info p{
+  font-family: 'Roboto', sans-serif;
+}
+.details{
+  width: 70%;
+  margin: .5rem auto;
+  padding: .8rem 1rem;
+  display: block;
+  border-bottom: .1rem solid crimson;
+  transition:  all .1s ease-in;
+  cursor: pointer;
+}
+.details:hover{
+  background-color: rgba(138, 177, 177, 0.363);
+}
+.details div{
+  display: flex;
+  margin: .5rem auto;
+  justify-content: space-between;
+  align-content: center;
+}
+.details h4{
+  font-size: 1.1rem;
+  color: teal;
+}
+.details .price,.size, .capacity{
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: crimson;
+  margin-right: 1.5rem;
+  text-decoration: double;
+}
+
+.description{
+  color: black;
+ font-size: .97rem;
+ line-height: 1.5rem;
+ margin: 1rem auto;
+  padding: .5rem 1rem;
+}
+.extras ul{
+    padding: .5rem 2rem;
+
+}
+.extras ul li{
+  font-family: 'Roboto', sans-serif;
+  margin: .5rem auto;
+  font-size: .97rem;
+  color: black;
+
+}
+
+/* button up */
+.btn-up{
+  /* width: 10%; */
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+  border-radius: 10%;
+  
+}
+.btn-up .fa{
+  background-color: orangered;
+color: white;
+padding: .3rem .5rem;
+font-size: 1.2rem;
+border-radius: 10%;
+border: .3rem solid orangered;
+transition: all .3s ease-in-out;
+animation: bounce  3s ease-in-out infinite;
+}
+
+@keyframes bounce{
+  0%{
+    transform: scale(.7);
+  }
+ 
+  50%{
+    transform: scale(1);
+  }
+ 
+  100%{
+    transform: scale(.7);
+  }
+}
+.btn-up .fa:hover{
+   color: orangered;
+   background: transparent;
 }
