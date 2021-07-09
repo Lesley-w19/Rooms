@@ -4,7 +4,7 @@
 *{
   padding: 0;
   margin: 0;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 }
 
 body {
@@ -141,12 +141,13 @@ code {
 /* room details */
 .room-details{
   width: 100vw;
+  margin: 0;
 }
 
-.images-wrapper{
+/* .images-wrapper{
   display: block;
 
-}
+} */
 .imgContainer{
   width: 100%;
   position: relative;
@@ -158,17 +159,40 @@ code {
 .btnImg{
   position: absolute;
   bottom: 1rem;
-  left: 25%;
-  width: 50%;
+  left: 30%;
+  width: 36%;
   margin: 0 auto;
- display: flex;
  
 }
 
 .btnImg .btn:hover{
   background:rgba(0, 128, 128, 0.678);
 }
+.divInput{
+  width: 80%;
+  margin: 2rem auto;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  transition: all .3s ease-in-out;
+}
 
+.divInput input{
+  width: 70%;
+  margin: 0 auto;
+  padding: .8rem ;
+  text-transform: capitalize;
+  letter-spacing: .1rem;
+}
+.divInput .fa{
+  font-size: 1.2rem;
+  color: orangered;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+.divInput .fa:hover{
+  color: teal;
+}
 /* .images{
   display: flex;
   justify-content: space-around;
@@ -232,17 +256,18 @@ code {
   padding: .5rem 1rem;
   color: teal;
   text-transform: uppercase;
-  /* background-color: yellow; */
 }
 .room-info{
-  width: 80vw;
-  margin: 1rem auto 1rem auto;
+  width: 90vw;
+  box-sizing: border-box;
+  margin:1rem auto;
   padding: 1rem 2rem;
   letter-spacing: .1rem;
+  background-color: orange;
+transition: all .3s ease-in-out;
 }
 
 .room-info:hover{
-  /* background: rgba(216, 185, 191, 0.117); */
   box-shadow: 0 .1rem 0.2rem darkslategrey;
 }
 .detNum{
@@ -251,7 +276,8 @@ code {
   margin: 1rem auto;
 }
 .room-info h3{
-  color: orangered;
+  /* color: orangered; */
+  color: rgb(114, 41, 14);
   font-size: 1.2rem;
   font-family: 'Roboto Slab', serif;
 }
@@ -269,7 +295,8 @@ code {
   cursor: pointer;
 }
 .details:hover{
-  background-color: rgba(138, 177, 177, 0.363);
+  /* background-color: rgba(138, 177, 177, 0.363); */
+  background-color: rgba(255, 255, 255, 0.459);
 }
 .details div{
   display: flex;
@@ -308,14 +335,16 @@ code {
 
 }
 
+
 /* button up */
 .btn-up{
-  /* width: 10%; */
   position: fixed;
   bottom: 2rem;
   right: 1rem;
   border-radius: 10%;
-  
+  border:none;
+  outline: none;
+  background: transparent;
 }
 .btn-up .fa{
   background-color: orangered;

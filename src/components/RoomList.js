@@ -18,8 +18,8 @@ function RoomList({ rooms }) {
           rooms.map((item) => {
             // console.log(item);
             return (
-              <div className="info-wrapper">
-                <Room room={item} key={item.id} />
+              <div className="info-wrapper" key={item.id} >
+                <Room room={item}/>
               </div>
             );
           })}

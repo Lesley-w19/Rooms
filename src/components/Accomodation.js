@@ -7,12 +7,16 @@ class Accomodation extends Component {
     super();
     this.state = {
       rooms: [],
+      loading: false,
       // room: 0,
     };
   }
   // fetch data from json file
   getData = async () => {
     try {
+      this.setState({
+        loading: true,
+      });
       const results = await fetch("data.json");
       const response = await results.json();
 
@@ -24,6 +28,7 @@ class Accomodation extends Component {
 
       this.setState({
         rooms: rooms,
+        loading: false,
         // room: room,
       });
 
@@ -60,10 +65,15 @@ class Accomodation extends Component {
     return roomDetail;
   };
 
-
   render() {
-    const { rooms } = this.state;
+    const { rooms, loading } = this.state;
     // console.log(rooms);
+
+    if(loading){
+      return(
+        <div>Loading...</div>
+      )
+    }
     return (
       <div className="section-wrapper">
         <div className="accomodation">
@@ -74,7 +84,7 @@ class Accomodation extends Component {
           {/* <Room rooms = {this.state.rooms} />*/}
           {/* <Room rooms={rooms}/> */}
 
-          <RoomList rooms = {rooms} key={rooms.id}/>
+          <RoomList rooms={rooms} key={rooms.id} />
         </div>
       </div>
     );

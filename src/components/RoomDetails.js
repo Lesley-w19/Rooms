@@ -15,21 +15,24 @@ class RoomDetails extends Component {
       loading: false,
     };
   }
-  componentDidMount() {
+  async componentDidMount() {
+    this.inputRef.current && this.inputRef.current.click();
+
     this.setState({
       loading: true,
     });
-    this.getRoom();
+    await this.getRoom();
 
     this.setState({
       loading: false,
     });
-    this.inputRef.current.click();
   }
 
   // get specific room
   getRoom = async () => {
-    let response = await fetch("/data.json");
+
+    try{
+        let response = await fetch("/data.json");
     let result = await response.json();
 
     // console.log(result)
@@ -43,7 +46,13 @@ class RoomDetails extends Component {
 
     // console.log(room);
     return room;
+  }
+  catch(error){
+    console.log(error.message);
+  }
   };
+    
+  
 
   // function referencef
   scrollToTop = () => {
@@ -61,7 +70,7 @@ class RoomDetails extends Component {
       return <div>Loading...</div>;
     }
 
-    if (!room) {
+    if (!(room && room.fields)) {
       return (
         <div>
           <h3>Room not found.</h3>
@@ -85,14 +94,7 @@ class RoomDetails extends Component {
     return (
       <div className="section-wrapper">
         <div ref={this.scrollRef}></div>
-        <input
-          type="text"
-          placeholder="search rooms"
-          ref={this.inputRef}
-          onClick={() => {
-            console.log("clicked");
-          }}
-        />
+       
         {/* single rooom details */}
         <div className="room-details">
           <div className="images-wrapper">
@@ -104,6 +106,17 @@ class RoomDetails extends Component {
                 </button>
               </div>
             </div>
+            <div className="divInput">
+            <input
+          type="text"
+          placeholder="search rooms"
+          ref={this.inputRef}
+          onClick={() => {
+            console.log("clicked");
+          }}
+        />
+<i class="fa fa-search" aria-hidden="true"></i>       
+     </div>
             <div className="images">
               <div>
                 <img src={images && images[1]} alt="one" />
@@ -147,10 +160,10 @@ class RoomDetails extends Component {
               <div className="extras">
                 <ul>
                   {roomInfo.extras &&
-                    roomInfo.extras.map((items) => {
+                    roomInfo.extras.map((items, index) => {
                       //  console.log(items)
                       return (
-                        <div>
+                        <div key={index}>
                           <li>{items}</li>
                         </div>
                       );
@@ -161,11 +174,11 @@ class RoomDetails extends Component {
             <div></div>
           </div>
         </div>
-        <div className="btn-up">
-          <button onClick={this.scrollToTop}>
+      {/* button scroll up */}
+          <button onClick={this.scrollToTop} className="btn-up">
             <i class="fa fa-arrow-up" aria-hidden="true"></i>
           </button>
-        </div>
+        
       </div>
     );
   }
