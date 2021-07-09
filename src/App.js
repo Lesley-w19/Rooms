@@ -67,7 +67,7 @@ import RoomDetails from './components/RoomDetails';
 function App(){
   return(
   <div>
-     <Route path="/accomodation" component={Accomodation} exact/>
+     <Route path="/" component={Accomodation} exact/>
    <Route path="/room/:slug" component={RoomDetails} exact/>
   </div>
     
