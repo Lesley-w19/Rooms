@@ -5,6 +5,10 @@ class RoomDetails extends Component {
   constructor(props) {
     super(props);
     // console.log(props);
+
+    this.scrollRef = React.createRef();
+    this.inputRef = React.createRef();
+
     this.state = {
       room: {},
       slug: this.props.match.params.slug,
@@ -20,7 +24,9 @@ class RoomDetails extends Component {
     this.setState({
       loading: false,
     });
+    this.inputRef.current.click();
   }
+
   // get specific room
   getRoom = async () => {
     let response = await fetch("/data.json");
@@ -39,8 +45,16 @@ class RoomDetails extends Component {
     return room;
   };
 
-  render() {
+  // function referencef
+  scrollToTop = () => {
+    // console.log(this.scrollRef.current);
+    this.scrollRef.current.scrollIntoView({
+      behavior: "smooth",
+      top: true,
+    });
+  };
 
+  render() {
     //   console.log(this.props);
     const { room, loading } = this.state;
     if (loading) {
@@ -63,13 +77,22 @@ class RoomDetails extends Component {
       room.fields &&
       room.fields.images &&
       room.fields.images.map((image) => image.fields.file.url);
-   const roomInfo = { ...room.fields,id };
+    const roomInfo = { ...room.fields, id };
     // console.log(roomInfo);
     // const {description, price, name, extras, size, type,capacity} = this.room
     // console.log(images)
 
     return (
       <div className="section-wrapper">
+        <div ref={this.scrollRef}></div>
+        <input
+          type="text"
+          placeholder="search rooms"
+          ref={this.inputRef}
+          onClick={() => {
+            console.log("clicked");
+          }}
+        />
         {/* single rooom details */}
         <div className="room-details">
           <div className="images-wrapper">
@@ -77,83 +100,72 @@ class RoomDetails extends Component {
               <img src={images && images[0]} alt="details" />
               <div className="btnImg">
                 <button className="btn">
-                  <Link to="/accomodation">Back to Rooms</Link>
+                  <Link to="/">Back to Rooms</Link>
                 </button>
               </div>
             </div>
             <div className="images">
               <div>
-              <img src={images && images[1]} alt="one" />
+                <img src={images && images[1]} alt="one" />
               </div>
               <div>
-              <img src={images && images[2]} alt="two" />
+                <img src={images && images[2]} alt="two" />
               </div>
               <div>
-              <img src={images && images[3]} alt="three" />
+                <img src={images && images[3]} alt="three" />
               </div>
             </div>
           </div>
-        <div className="roomHeader">
-          <h1>{roomInfo && roomInfo.name}</h1>
-        </div>
+          <div className="roomHeader">
+            <h1>{roomInfo && roomInfo.name}</h1>
+          </div>
           <div className="room-info">
             <div>
-              <h3>Description  </h3>
+              <h3>Description </h3>
               <div className="details">
                 <div>
                   <h4>Size:</h4>
-                <p className="size">{roomInfo && roomInfo.size}</p>
+                  <p className="size">{roomInfo && roomInfo.size}</p>
                 </div>
-                
+
                 <div>
-                     <h4>Price:</h4>
-                <p className="price">{roomInfo && roomInfo.price} </p>
+                  <h4>Price:</h4>
+                  <p className="price">{roomInfo && roomInfo.price} </p>
                 </div>
-             
-             <div>
-                <h4>Capacity:</h4>
-                <p className="capacity">{roomInfo && roomInfo.capacity} </p>
-             </div>
-               
+
+                <div>
+                  <h4>Capacity:</h4>
+                  <p className="capacity">{roomInfo && roomInfo.capacity} </p>
+                </div>
               </div>
 
-              <p className="description">
-               {roomInfo && roomInfo.description}
-              </p>
+              <p className="description">{roomInfo && roomInfo.description}</p>
             </div>
 
             <div>
-              <h3>Extras  </h3>
+              <h3>Extras </h3>
               <div className="extras">
-              <ul> 
-                {
-               roomInfo.extras && roomInfo.extras.map((items) => {
-                //  console.log(items)
-               return(
-               <div>
-                 
-                <li>{items}</li>
-              
-               </div>
-               )
-
-                })
-              }
-              </ul>
- 
-  </div>
+                <ul>
+                  {roomInfo.extras &&
+                    roomInfo.extras.map((items) => {
+                      //  console.log(items)
+                      return (
+                        <div>
+                          <li>{items}</li>
+                        </div>
+                      );
+                    })}
+                </ul>
+              </div>
             </div>
-            <div>
-            
-            </div>
+            <div></div>
           </div>
-       
         </div>
         <div className="btn-up">
-            <Link to="/">
-            <i class="fa fa-arrow-up" aria-hidden="true" ></i>
-            </Link>
-          </div>
+          <button onClick={this.scrollToTop}>
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
     );
   }
